@@ -1,6 +1,13 @@
+import json
 import sys
 import requests
-import json
+import pymongo
+
+uri = "mongodb://urlget:uHNWUz4jcGKMnlYCkb6aTNO9rtpEfdTyam4EWoSZ5vsiBmha3PZcqiZ14cb6i35AEEXPgceUAlUWwonKOJoUgw==@urlget.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+client = pymongo.MongoClient(uri)
+mydb = client["statTracker"]
+print(client.list_database_names())
+
 
 names = ["Skarmaggio", "Shawarmaaaaaa", "Christoballh", "EpleFyrsten"]
 
@@ -16,6 +23,7 @@ for name in names:
 
     stats_string = json.dumps(stats_JSON, indent=2)
 
+    stats_lastupdated = stats_JSON['data']['stats']['lastUpdated']
     stats_scorePerMin = stats_JSON['data']['stats']['scorePerMinute']['value']
     stats_kd = stats_JSON['data']['stats']['kdRatio']['value']
     stats_kills = stats_JSON['data']['stats']['kills']['value']
@@ -32,15 +40,17 @@ for name in names:
 
 
 
-    #print(stats_string) 
+    print(stats_string) 
     #print(round(stats_scorePerMin, 2))
     #print(account_name, stats_kd, stats_scorePerMin, stats_wlPercentage)
-    showVals('Name', account_name)
-    showVals('ScorePerMin', stats_scorePerMin)
-    showVals('KD', stats_kd)
-    showVals('Kills per min', stats_killsPerMinute)
-    showVals('Longest headshot', stats_longestHeadShot)
-    showVals('Win Loss %', stats_wlPercentage)
-    showVals('Longest killstreak', stats_killStreak)
-    showVals('Accuracy %', stats_accuracy)
+    #showVals('Name', account_name)
+    #showVals('ScorePerMin', stats_scorePerMin)
+    #showVals('KD', stats_kd)
+    #showVals('Kills per min', stats_killsPerMinute)
+    #showVals('Longest headshot', stats_longestHeadShot)
+    #showVals('Win Loss %', stats_wlPercentage)
+    #showVals('Longest killstreak', stats_killStreak)
+    #showVals('Accuracy %', stats_accuracy)
+    #showVals('Last updated', stats_lastupdated)
+
     print ("-------")
