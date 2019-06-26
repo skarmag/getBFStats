@@ -8,7 +8,7 @@ client = pymongo.MongoClient(uri)
 mydb = client["statTracker"]
 print(client.list_database_names())
 
-print("haaaaa")
+print("haaaaa tefefst") 
 
 names = ["Skarmaggio", "Shawarmaaaaaa", "Christoballh", "EpleFyrsten"]
 
